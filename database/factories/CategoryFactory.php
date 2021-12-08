@@ -27,7 +27,8 @@ class CategoryFactory extends Factory
 
         return[
             'category_status' => 1,
-            'category_name' => 'categories'.$this->faker->numberBetween(1,2),   
+            'category_name' => 'categories'.$this->faker->numberBetween(1,2), 
+            'idParent'  => NULL
         ];
     }
 
