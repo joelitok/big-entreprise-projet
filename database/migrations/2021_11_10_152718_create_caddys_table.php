@@ -22,9 +22,9 @@ class CreateCaddysTable extends Migration
             $table->timestamps();
 
             $table->foreign("order_id")->references('id')->on('orders')
-            ->onDelete('restrict')->onUpdate('restrict');
+            ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign("product_id")->references('id')->on('products')
-            ->onDelete('restrict')->onUpdate('restrict');
+            ->onDelete('cascade')->onUpdate('cascade');
 
 
 

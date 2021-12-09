@@ -604,7 +604,7 @@ class AdminController extends Controller
 
         $quatar->save();
         Toastr::success("Le qaurtier' . $quatar->quatar_name. ' a été ajouter avec succes :)", 'success');
-        return $this->list_quatar();
+        return redirect('/list_quatar');
     }
 
 

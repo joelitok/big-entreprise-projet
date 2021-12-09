@@ -23,7 +23,7 @@ class CreateDevisServicesTable extends Migration
 
         
             $table->foreign("service_id")->references('id')->on('services')
-            //->onDelete('restrict')->onUpdate('restrict') 
+            ->onDelete('cascade')->onUpdate('cascade') 
             ;
         });
     }

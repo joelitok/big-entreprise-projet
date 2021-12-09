@@ -20,10 +20,10 @@ class CreateRessourceRoleTable extends Migration
             $table->timestamps();
 
             $table->foreign("ressource_id")->references('id')->on('ressources')
-          //  ->onDelete('restrict')->onUpdate('restrict')
+            ->onDelete('cascade')->onUpdate('cascade')
             ;
             $table->foreign("role_id")->references('id')->on('roles')
-           // ->onDelete('restrict')->onUpdate('restrict')
+            ->onDelete('cascade')->onUpdate('cascade')
             ;
         });
     }

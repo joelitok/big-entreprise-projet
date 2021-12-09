@@ -28,7 +28,7 @@ class CreateOrdersTable extends Migration
             $table->string('anothernumber')->default(007555520);
             $table->timestamps();
             $table->foreign("client_id")->references('id')->on('clients')
-            ->onDelete('restrict')->onUpdate('restrict');
+            ->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

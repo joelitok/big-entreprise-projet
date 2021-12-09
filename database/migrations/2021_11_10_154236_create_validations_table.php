@@ -21,9 +21,9 @@ class CreateValidationsTable extends Migration
             $table->timestamps();
 
             $table->foreign("user_id")->references('id')->on('users')
-            ->onDelete('restrict')->onUpdate('restrict');
+            ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign("order_id")->references('id')->on('orders')
-            ->onDelete('restrict')->onUpdate('restrict');
+            ->onDelete('cascade')->onUpdate('cascade');
 
 
         });

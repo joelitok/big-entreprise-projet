@@ -25,7 +25,7 @@ class CreateZonesTable extends Migration
             $table->timestamps();
 
             $table->foreign("city_id")->references('id')->on('cities')
-            ->onDelete('restrict')->onUpdate('restrict');
+            ->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

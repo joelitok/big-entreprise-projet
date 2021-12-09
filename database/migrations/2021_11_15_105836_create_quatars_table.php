@@ -25,10 +25,10 @@ class CreateQuatarsTable extends Migration
             
 
             $table->foreign("city_id")->references('id')->on('cities')
-           // ->onDelete('restrict')->onUpdate('restrict')
+           ->onDelete('cascade')->onUpdate('cascade')
             ;
             $table->foreign("zone_id")->references('id')->on('zones')
-          //  ->onDelete('restrict')->onUpdate('restrict')
+           ->onDelete('cascade')->onUpdate('cascade')
             ;
             
         });
