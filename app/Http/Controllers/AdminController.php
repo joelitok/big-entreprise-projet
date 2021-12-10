@@ -355,7 +355,7 @@ class AdminController extends Controller
         $product = Product::find($id);
         $product->product_status = 0;
         $product->update();
-        Toastr::success("Le product a été désactiver avec succès :)", 'Warning');
+        Toastr::warning("Le product a été désactiver avec succès :)", 'Warning');
         return back();
     }
 

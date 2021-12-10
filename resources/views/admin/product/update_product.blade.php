@@ -171,7 +171,7 @@
                                 </div>
                                 <div class="col-lg-8">
                                     <input type="submit" value="Envoyer" class="btn btn-warning">
-                                    <a href="{{ URL::to('/admin') }}" class="btn btn-danger"> Annuler</a>
+                                    <a href="{{ URL::to('/list_product_a') }}" class="btn btn-danger"> Annuler</a>
 
                                 </div>
                             </div>
