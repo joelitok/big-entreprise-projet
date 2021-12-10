@@ -147,7 +147,7 @@ class SliderController extends Controller
         }
 
         $slider->update();
-        Toastr::error("le slider a été modifier avec succès :)", 'Success');
+        Toastr::success("le slider a été modifier avec succès :)", 'Success');
         return redirect('/slider_list');
     }
 }

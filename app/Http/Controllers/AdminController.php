@@ -23,9 +23,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Models\NewsLetter;
 use App\Models\Role;
-use App\Models\RoleUser;
 use Illuminate\Support\Facades\Mail;
-use Symfony\Component\Console\Input\Input;
 
 class AdminController extends Controller
 {
@@ -157,19 +155,7 @@ class AdminController extends Controller
 
     public function delete_user($id)
     {
-        $user_role_u = RoleUser::where('user_id', $id)->first();
-        if ($user_role_u) {
-            $user_role_u->delete();
-        } else {
-            //
-        }
-
-        $user_role = Role::where('id', $id)->first();
-        if ($user_role) {
-            $user_role->delete();
-        } else {
-        }
-
+        
         $user = User::find($id);
         if ($user) {
             $user->delete();
@@ -295,7 +281,7 @@ class AdminController extends Controller
                 'product_description' => 'required',
                 'product_category' => 'required',
                 'product_image' => 'required',
-                'product_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+                'product_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5048'
 
             ]
         );
@@ -387,13 +373,21 @@ class AdminController extends Controller
     public function delete_product($id)
     {
         $product = Product::find($id);
-        if ($product->product_image != 'noimage.jpg') {
-            foreach (json_decode($product->product_image) as $img) {
-                Storage::delete('/public_images/' . $img);
-            }
-        }
-        $product->delete();
 
+        if ($product != null) {
+            if ($product->product_image != 'noimage.jpg') {
+                foreach (json_decode($product->product_image) as $img) {
+                    Storage::delete('/public_images/' . $img);
+                }
+            }
+        } else {
+            Toastr::error("Cet élément a déjà été supprimé:)", 'Error');
+            return back();
+        }
+
+
+
+        $product->delete();
         Toastr::success("Le product a été supprimer avec succès :)", 'success');
         return back();
     }
@@ -425,35 +419,49 @@ class AdminController extends Controller
                 'product_description' => 'required',
                 'product_category' => 'required',
                 'product_price' => 'required',
-                'product_image' => 'image| nullable|max:19990'
+                'product_image' => 'required',
+                'product_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5048'
+
             ]
         );
 
 
         if ($request->hasFile('product_image')) {
+
+            foreach ($request->file('product_image') as $image) {
+                $name = $image->getClientOriginalName();
+                $image->move(public_path() . '/public_images/', $name);
+                $data[] = $name;
+            }
+
             //1 get file name with extension
-            $fileNameWithExt = $request->file('product_image')->getClientOriginalName();
+            // $fileNameWithExt = $request->file('product_image')->getClientOriginalName();
             //2 file name without extension
 
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //$fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
 
             //3 get extension
-            $extension = $request->file('product_image')->getClientOriginalExtension();
+            //$extension = $request->file('product_image')->getClientOriginalExtension();
 
             //4 renamane image to store
-            $fileNameToStore = $fileName . '_' . time() . '' . $extension;
+            //$fileNameToStore = $fileName . '_' . time() . '' . $extension;
 
-            $path = $request->file('product_image')->move(
-                public_path() .
-                    '/product_images',
-                $fileNameToStore
-            );
+            //$path = $request->file('product_image')->move( public_path() .'/product_images', $fileNameToStore);
 
-            if ($product->product_image != 'noimage.jpg') {
+
+
+
+            /*if($product->product_image != 'noimage.jpg') {
                 Storage::delete('public/product_images/' . $product->image);
-            }
-            $product->product_image = $fileNameToStore;
+            }*/
+
+            // $product->product_image = $fileNameToStore;
+
+        } else {
+            $data = '["noimage.jpg"]';
         }
+
+        $product->product_image = json_encode($data);
         $product->poids = $request->input('poids');
         $product->stock = $request->input('stock');
         $product->stock_min = $request->input('stock_min');
@@ -614,7 +622,7 @@ class AdminController extends Controller
         $cities = City::orderBy('id', 'DESC')->get();
         $quatars = Quatar::orderBy('id', 'DESC')->get();
         return view('admin.delivery_quatar.list_quatar')
-            ->with('cities', $cities)->with('zones', $zones)
+            ->with('cities', $cities)-> with('zones', $zones)
             ->with('quatars', $quatars);
     }
 

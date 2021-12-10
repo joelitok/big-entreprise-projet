@@ -4,7 +4,8 @@
         <div class="content-wrapper">
             <div class="row grid-margin">
                 <div class="col-12">
-                    <form method="post" action="{{ url('/service_update_save_action') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ url('/product_attach_update_save_action') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="card">
                             @if (Session::has('status'))
@@ -25,7 +26,7 @@
                             @endif
 
                             <div class="card-body">
-                                <h4 class="card-title" style="text-align: center">Nouveau Service</h4>
+                                <h4 class="card-title" style="text-align: center">Nouveau Produit</h4>
                                 <div class="form-group row">
                                     <input type="hidden" value="{{ $product_attach->id }}" name="id">
                                     <div class="col-lg-3">

@@ -108,7 +108,8 @@
                                                             name="zone_id" required>
 
                                                             @foreach ($zones as $zone)
-                                                                <option value="{{ $zone->id }}">{{ $zone->zone_name }}
+                                                                <option value="{{ $zone->id }}">
+                                                                    {{ $zone->zone_name }}
                                                                 </option>
                                                             @endforeach
                                                         </select>

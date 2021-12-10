@@ -178,37 +178,42 @@ class ServiceController extends Controller
         $service->service_name = $request->input('service_name');
         $service->service_description = $request->input('service_description');
 
-        $this->validate(
-            $request,
-            [
-                'service_name' => 'required',
-                'service_name' => 'required',
-                'service_image' => 'image| nullable|max:19990'
-            ]
-        );
-        if ($request->hasFile('service_image')) {
+        // $this->validate(
+        //     $request,
+        //     [
+        //         'service_name' => 'required',
+        //         'service_name' => 'required',
+        //         'service_image' => 'image| nullable|max:19990'
+        //     ]
+        // );
+     
+        if ($request->hasFile('service_image')){
+
+            foreach ($request->file('service_image') as $image) {
+                $name = $image->getClientOriginalName();
+                $image->move(public_path() . '/public_service_images/', $name);
+                $data[] = $name;
+            }
+
+
+
             //1 get file name with extension
 
-            $fileNameWithExt = $request->file('service_image')->getClientOriginalName();
+            //$fileNameWithExt = $request->file('service_image')->getClientOriginalName();
             //2 file name without extension
 
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+           // $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
 
             //3 get extension
-            $extension = $request->file('service_image')->getClientOriginalExtension();
+           // $extension = $request->file('service_image')->getClientOriginalExtension();
 
             //4 renamane image to store
-            $fileNameToStore = $fileName . '_' . time() . '' . $extension;
+           // $fileNameToStore = $fileName . '_' . time() . '' . $extension;
 
-            $path = $request->file('service_image')->move(
-                public_path() . '/service_images',
-                $fileNameToStore
-            );
+           // $path = $request->file('service_image')->move(public_path() . '/public_service_images', $fileNameToStore);
 
-            if ($service->service_image != 'noimage.jpg') {
-                Storage::delete('public/service_images/' . $service->image);
-            }
-            $service->service_image = $fileNameToStore;
+            $service->service_image = json_encode($data);
+           
         }
         Toastr::success("le service a été modifier avec succès :)", 'Success');
         $service->update();

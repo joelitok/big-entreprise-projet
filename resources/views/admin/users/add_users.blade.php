@@ -194,7 +194,8 @@
                                                     <tr>
                                                         <td>{{ $res->name }}</td>
                                                         <td class="text-center">
-                                                            <a href="{{ url('/delete_client_a/' . $res->id) }}" id="delete">
+                                                            <a href="{{ url('/delete_client_a/' . $res->id) }}"
+                                                                id="delete">
                                                                 <i class="ti-trash"></i></a>
                                                         </td>
                                                     </tr>
@@ -255,7 +256,7 @@
                                                         <textarea id="desc" name="description" class="form-control"
                                                             rows="5" cols="5">
 
-                                                            </textarea>
+                                                                </textarea>
 
 
                                                     </div>

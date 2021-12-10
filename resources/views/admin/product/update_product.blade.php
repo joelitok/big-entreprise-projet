@@ -1,5 +1,6 @@
 @extends('layouts.layoutAdmin.appAdmin')
 @section('content')
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="row grid-margin">
@@ -129,8 +130,37 @@
                                         <label class="col-form-label">Image</label>
                                     </div>
                                     <div class="col-lg-8">
-                                        <input class="form-control" name="product_image" type="file"
-                                            value="{{ $product->product_image }}" required>
+
+                                        {{-- add images --}}
+                                        <div class="input-group control-group increment">
+                                            <input type="file" name="product_image[]" class="form-control">&nbsp;
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-success add" type="button"><i
+                                                        class="ti ti-plus"></i>&nbsp;Add</button>
+                                            </div>
+                                        </div>
+
+                                        {{-- delete image --}}
+                                        <div class="clone hide">
+                                            <div class="control-group input-group" style="margin-top:10px">
+                                                <input type="file" name="product_image[]" class="form-control"> &nbsp;
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-danger remove" type="button"><i
+                                                            class="ti ti-close"></i>&nbsp; Remove</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script type="text/javascript">
+                                            $(document).ready(function() {
+                                                $(".btn-success").click(function() {
+                                                    var html = $(".clone").html();
+                                                    $(".increment").after(html);
+                                                });
+                                                $("body").on("click", ".btn-danger", function() {
+                                                    $(this).parents(".control-group").remove();
+                                                });
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +170,7 @@
                                 <div class="col-lg-3">
                                 </div>
                                 <div class="col-lg-8">
-                                    <input type="submit" value="Envoyer" class="btn btn-success">
+                                    <input type="submit" value="Envoyer" class="btn btn-warning">
                                     <a href="{{ URL::to('/admin') }}" class="btn btn-danger"> Annuler</a>
 
                                 </div>

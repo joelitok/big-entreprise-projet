@@ -67,7 +67,8 @@
 
                                                     </td>
                                                     <td>
-                                                        <a href="{{ url('/delete_client_a/' . $client->id) }}" id="delete">
+                                                        <a href="{{ url('/delete_client_a/' . $client->id) }}"
+                                                            id="delete">
                                                             <i class="ti-trash"></i></a>
                                                     </td>
                                                     <td>

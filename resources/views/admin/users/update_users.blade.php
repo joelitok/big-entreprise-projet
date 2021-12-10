@@ -14,7 +14,8 @@
                     </div>
                 @endif
                 <div class="card-body">
-                    <h4 class="card-title col-10">Informations de <b> {{ $user->firstname }} {{ $user->lastname }}</b></h4>
+                    <h4 class="card-title col-10">Informations de <b> {{ $user->firstname }} {{ $user->lastname }}</b>
+                    </h4>
 
                     <div class="m-4">
                         <div class="tab-content">
@@ -30,14 +31,14 @@
                                             <div class="row">
                                                 <div class="form-group col-6">
                                                     <label for="nom">Nom:</label>
-                                                    <input class="form-control" value="{{ $user->firstname }}" type="text"
-                                                        id="nom" required="required" name="nom" required>
+                                                    <input class="form-control" value="{{ $user->firstname }}"
+                                                        type="text" id="nom" required="required" name="nom" required>
                                                 </div>
 
                                                 <div class="form-group col-6">
                                                     <label for="prenom">Prénom:</label>
-                                                    <input class="form-control" value="{{ $user->lastname }}" type="text"
-                                                        id="prenom" name="prenom" required>
+                                                    <input class="form-control" value="{{ $user->lastname }}"
+                                                        type="text" id="prenom" name="prenom" required>
                                                 </div>
 
                                                 <div class="form-group col-6">

@@ -239,6 +239,7 @@
 						
 					</div>
 				</div>
+
 			</section>
 			@include('sweetalert::alert')
 			<!-- =========================== Login/Signup =================================== -->

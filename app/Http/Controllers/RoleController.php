@@ -74,17 +74,19 @@ class RoleController extends Controller
     {
         $roleid = $request->role_id;
         $ids = $request->ids;
+        
         $b = preg_split("/[,]/", $ids);
-
 
         DB::beginTransaction();
         try {
-            foreach ($b as $item) {
-                $res = RessourceRole::where('ressource_id', $item)->first();
-                if ($res) {
-                    $res->delete();
+            $res = RessourceRole::where('role_id',$roleid)->get();
+            if ($res) {
+                foreach ($res as $item) {
+                    $item->delete();
                 }
+              
             }
+           
 
             foreach ($b as $item) {
                 $res = new RessourceRole();

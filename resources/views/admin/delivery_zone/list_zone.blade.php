@@ -25,7 +25,8 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="post" action="{{ url('/zone_add_save') }}" enctype="multipart/form-data">
+                                    <form method="post" action="{{ url('/zone_add_save') }}"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         <div class="card">
                                             <div class="card-body">

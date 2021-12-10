@@ -41,7 +41,8 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="post" action="{{ url('/city_add_save') }}" enctype="multipart/form-data">
+                                    <form method="post" action="{{ url('/city_add_save') }}"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         <div class="card">
                                             @if (Session::has('status'))

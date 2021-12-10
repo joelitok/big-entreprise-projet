@@ -155,7 +155,8 @@
 
                                                     <td>
                                                         <a title="Supprimer"
-                                                            href="{{ url('/delete_service/' . $service->id) }}" id="delete">
+                                                            href="{{ url('/delete_service/' . $service->id) }}"
+                                                            id="delete">
                                                             <i class="ti-trash"></i></a>
                                                     </td>
                                                     <td>

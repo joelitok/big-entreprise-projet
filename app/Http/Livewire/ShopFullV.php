@@ -39,7 +39,7 @@ class ShopFullV extends Component
   public function render()
   {
 
-    $this->visitors('Boutique');
+    //$this->visitors('Boutique');
 
     if (request()->is('shop-full-v/*')) {
       $ValueCategory = 0;

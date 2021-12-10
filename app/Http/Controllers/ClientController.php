@@ -48,14 +48,14 @@ class ClientController extends Controller
 
     public function contact()
     {
-        $this->visitors('contact');
+    //    $this->visitors('contact');
         return view('client.contact');
     }
 
 
     public function services()
     {
-        $this->visitors('services');
+      //  $this->visitors('services');
         $services = Service::orderBy('id', 'DESC')->where('service_status', 1)->paginate(15);
 
         return view('client.services')->with('services', $services);
@@ -73,7 +73,7 @@ class ClientController extends Controller
 
     public function product_attaches()
     {
-        $this->visitors('Produits');
+       // $this->visitors('Produits');
         $product_attaches = Productattach::orderBy('id', 'DESC')->where('product_attach_status', 1)->paginate(15);
         return view('client.product_attaches')->with('product_attaches', $product_attaches);
     }
@@ -90,7 +90,7 @@ class ClientController extends Controller
 
     public function about()
     {
-        $this->visitors('A propos');
+       // $this->visitors('A propos');
 
         $services = Service::orderBy('id', 'DESC')->where('service_status', 1)->get();
 
@@ -105,13 +105,13 @@ class ClientController extends Controller
 
     public function login2()
     {
-        $this->visitors('connexion');
+     //   $this->visitors('connexion');
         return view('client.login2');
     }
 
     public function signup2()
     {
-        $this->visitors('registrement');
+      //  $this->visitors('registrement');
         return view('client.signup2');
     }
 

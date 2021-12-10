@@ -1,5 +1,6 @@
 @extends('layouts.layoutAdmin.appAdmin')
 @section('content')
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="row grid-margin">
@@ -49,8 +50,39 @@
                                                 <label class="col-form-label">Image</label>
                                             </div>
                                             <div class="col-lg-8">
-                                                <input class="form-control" name="service_image" type="file"
-                                                    value="{{ $service->service_image }}" required>
+
+
+                                                <div class="input-group control-group increment">
+                                                    <input type="file" name="service_image[]" class="form-control">&nbsp;
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-success add" type="button"><i
+                                                                class="ti ti-plus"></i>&nbsp;Add</button>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="clone hide">
+                                                    <div class="control-group input-group" style="margin-top:10px">
+                                                        <input type="file" name="service_image[]" class="form-control">
+                                                        &nbsp;
+                                                        <div class="input-group-btn">
+                                                            <button class="btn btn-danger remove" type="button"><i
+                                                                    class="ti ti-close"></i>&nbsp;
+                                                                Remove</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(document).ready(function() {
+                                                        $(".add").click(function() {
+                                                            var html = $(".clone").html();
+                                                            $(".increment").after(html);
+                                                        });
+                                                        $("body").on("click", ".remove", function() {
+                                                            $(this).parents(".control-group").remove();
+                                                        });
+                                                    });
+                                                </script>
                                             </div>
                                         </div>
                                         <div class="form-group row">

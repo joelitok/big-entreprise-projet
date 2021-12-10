@@ -35,7 +35,8 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $ressources = Ressource::all();
-        return view('admin.users.add_users')->with('roles', $roles)->with('ressources', $ressources);
+        return view('admin.users.add_users')->with('roles', $roles)
+        ->with('ressources', $ressources);
     }
 
     /**
@@ -75,7 +76,8 @@ class UserController extends Controller
 
         if ($roles != null) {
             foreach ($roles as $role) {
-                $role_user = RoleUser::where('user_id', $user->id)->where('role_id', $role->id)->get();
+                $role_user = RoleUser::where('user_id', $user->id)
+                ->where('role_id', $role->id)->get();
                 if ($role_user != null ? count($role_user) > 0 : false) {
                     $role->exist = true;
                 }
@@ -157,7 +159,8 @@ class UserController extends Controller
             $user->password = Hash::make($request['password']);
         }
 
-        $exit = User::where('firstname', $user->firstname)->orWhere('email', $user->email)->first();
+        $exit = User::where('firstname', $user->firstname)
+        ->orWhere('email', $user->email)->first();
         if (!$exit || $exit->id == $user->id) {
             $user->updated_at = now();
         }

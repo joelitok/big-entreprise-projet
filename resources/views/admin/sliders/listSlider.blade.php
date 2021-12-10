@@ -152,8 +152,8 @@
                                                     </td>
 
                                                     <td>
-                                                        <a href="{{ url('/delete_slider/' . $slider->id) }}" id="delete"> <i
-                                                                class="ti-trash"> </i></a>
+                                                        <a href="{{ url('/delete_slider/' . $slider->id) }}" id="delete">
+                                                            <i class="ti-trash"> </i></a>
                                                     </td>
                                                     <td>
                                                         @if ($slider->slider_status == 1)

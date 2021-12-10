@@ -144,7 +144,7 @@ class ProductAttachController extends Controller
 
             $fileNameWithExt = $request->file('product_attach_image')->getClientOriginalName();
             //2 file name without extension
-
+            
             $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
 
             //3 get extension
